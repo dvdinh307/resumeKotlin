@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph2"
+    app:startDestination="@id/listCustomerFragment">
+    <fragment
+        android:id="@+id/listCustomerFragment"
+        android:name="com.example.resumeandroid.views.fragments.ListCustomerFragment"
+        android:label="ListCustomerFragment">
+        <action
+            android:id="@+id/actionAddCustomer"
+            app:destination="@id/AddCustomerFragment" />
+        <action
+            android:id="@+id/goEditCustomer"
+            app:destination="@id/EditCustomerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddCustomerFragment"
+        android:name="com.example.resumeandroid.views.fragments.AddCustomerFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_add_customer">
+
+        <action
+            android:id="@+id/backToList"
+            app:destination="@id/listCustomerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EditCustomerFragment"
+        android:name="com.example.resumeandroid.views.fragments.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/backToMain"
+            app:destination="@id/listCustomerFragment" />
+    </fragment>
+</navigation>
