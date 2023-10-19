@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.resumeandroid.models.network.AppApi
+import com.example.resumeandroid.models.network.MarsApiService
 import com.example.resumeandroid.models.user.Photo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 enum class PhotoStatus { LOADING, ERROR, DONE }
 
-class LoadImageModel : ViewModel() {
+@HiltViewModel
+class LoadImageModel @Inject constructor(private val service: MarsApiService) : ViewModel() {
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<PhotoStatus>()
 
@@ -36,7 +39,7 @@ class LoadImageModel : ViewModel() {
         viewModelScope.launch {
             _status.value = PhotoStatus.LOADING
             try {
-                _photos.value = AppApi.retrofitService.getPhotos()
+                _photos.value = service.getPhotos()
                 _status.value = PhotoStatus.DONE
             } catch (e: Exception) {
                 _status.value = PhotoStatus.ERROR

@@ -9,14 +9,11 @@ import androidx.fragment.app.viewModels
 import com.example.resumeandroid.databinding.FragmentListImageBinding
 import com.example.resumeandroid.viewmodels.LoadImageModel
 import com.example.resumeandroid.views.adapter.PhotoGridAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListImageFragment : Fragment() {
-    private val viewModel: LoadImageModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+     private val viewModel: LoadImageModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
